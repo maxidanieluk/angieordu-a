@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Angie Orduña, Coach Ontológico</title>
+  <meta name="description" content="Angie Orduña, Coach Ontológico Profesional Acreditado en la AACOP. Sesiones individuales, coaching corporal y educativo. Entrenadora en ECOA, sedes Puerto Iguazú y Oberá.">
+  <meta name="theme-color" content="#763C90">
+  <link rel="icon" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Dosis:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --violet: #763C90;
+      --plum: #3F2150;
+      --lilac: #F4ECF8;
+      --lilac-deep: #E4D3EE;
+      --ink: #2B1B35;
+      --muted: #5E4B69;
+      --white: #FFFFFF;
+      --display: "Caveat Brush", "Segoe Print", "Comic Sans MS", cursive;
+      --body: "Dosis", "Trebuchet MS", system-ui, sans-serif;
+      --gutter: clamp(1.25rem, 4vw, 2rem);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--body);
+      font-weight: 500;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: var(--ink);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+    h1, h2, h3, p { margin: 0; }
+
+    :focus-visible { outline: 3px solid var(--violet); outline-offset: 3px; border-radius: 4px; }
+
+    .wrap { width: 100%; max-width: 1120px; margin-inline: auto; padding-inline: var(--gutter); }
+
+    /* ---------- Botones ---------- */
+    .btn {
+      display: inline-flex; align-items: center; gap: .6rem;
+      padding: .85rem 1.7rem;
+      border-radius: 999px;
+      border: 2px solid var(--violet);
+      background: var(--violet);
+      color: var(--white);
+      font: 700 1.1rem/1.2 var(--body);
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color .2s, border-color .2s, color .2s;
+    }
+    .btn:hover { background: var(--plum); border-color: var(--plum); }
+    .btn svg { width: 1.3em; height: 1.3em; flex: none; }
+    .btn--ghost { background: transparent; color: var(--violet); }
+    .btn--ghost:hover { background: var(--violet); border-color: var(--violet); color: var(--white); }
+    .btn--light { background: var(--white); border-color: var(--white); color: var(--plum); }
+    .btn--light:hover { background: var(--lilac-deep); border-color: var(--lilac-deep); }
+    .btn--small { padding: .55rem 1.2rem; font-size: 1rem; }
+
+    /* ---------- Header ---------- */
+    .site-header {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(255,255,255,.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--lilac-deep);
+    }
+    .site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 80px; }
+    .brand img { height: 72px; width: auto; }
+    .nav { display: flex; align-items: center; gap: 2rem; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; margin: 0; padding: 0; }
+    .nav-links a { text-decoration: none; font-weight: 600; color: var(--plum); padding-block: .3rem; border-bottom: 2px solid transparent; }
+    .nav-links a:hover, .nav-links a[aria-current="page"] { border-bottom-color: var(--violet); }
+    .menu-btn {
+      display: none;
+      background: none; border: 2px solid var(--violet); color: var(--violet);
+      border-radius: 999px; padding: .4rem 1rem; font: 700 1rem var(--body); cursor: pointer;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero { overflow-x: clip; padding-block: clamp(2.5rem, 7vw, 5.5rem); }
+    .hero .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+    .hero h1 {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(2.7rem, 6vw, 4.7rem);
+      line-height: 1.05;
+      color: var(--plum);
+      max-width: 14ch;
+    }
+    .hero .lead { margin-top: 1.4rem; max-width: 34em; color: var(--muted); font-size: 1.3rem; }
+    .hero .actions { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: .9rem; }
+
+    .portrait { position: relative; width: min(100%, 470px); margin-inline: auto; aspect-ratio: 1; }
+    .portrait .rings { position: absolute; left: -14%; top: -14%; width: 128%; height: 128%; color: var(--violet); }
+    .portrait .photo {
+      position: absolute; inset: 11%;
+      border-radius: 47% 53% 50% 50% / 53% 46% 54% 47%;
+      overflow: hidden;
+      background: var(--lilac-deep);
+    }
+    .portrait .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+
+    /* Único momento animado de la página: los anillos del logo se dibujan al cargar */
+    .rings ellipse { fill: none; stroke: currentColor; stroke-linecap: round; }
+    .rings .r1 { stroke-width: 16; opacity: .95; }
+    .rings .r2 { stroke-width: 11; opacity: .6; }
+    .rings .r3 { stroke-width: 7;  opacity: .38; }
+    .rings .r4 { stroke-width: 4;  opacity: .22; }
+    @media (prefers-reduced-motion: no-preference) {
+      .rings ellipse { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1.6s cubic-bezier(.3,.6,.2,1) forwards; }
+      .rings .r2 { animation-delay: .15s; }
+      .rings .r3 { animation-delay: .3s; }
+      .rings .r4 { animation-delay: .45s; }
+    }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+
+    /* ---------- Credenciales ---------- */
+    .creds { background: var(--lilac); padding-block: 2.2rem; }
+    .creds ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .creds li { padding-left: 1.1rem; border-left: 4px solid var(--violet); }
+    .creds strong { display: block; font-weight: 700; font-size: 1.25rem; line-height: 1.3; color: var(--plum); }
+    .creds span { color: var(--muted); font-size: 1.05rem; }
+
+    /* ---------- Secciones ---------- */
+    .section { padding-block: clamp(3.5rem, 8vw, 6rem); }
+    .section h2 {
+      font-family: var(--display); font-weight: 400;
+      font-size: clamp(2.1rem, 4.4vw, 3.2rem); line-height: 1.1; color: var(--plum);
+    }
+    .text-link { font-weight: 700; color: var(--violet); text-decoration-thickness: 2px; text-underline-offset: 5px; }
+    .text-link:hover { color: var(--plum); }
+
+    /* Quién soy */
+    .about .wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(1.5rem, 5vw, 4.5rem); align-items: start; }
+    .about .body p + p { margin-top: 1.1rem; }
+    .about .body .text-link { display: inline-block; margin-top: 1.6rem; }
+
+    /* Servicios: lista editorial, no tarjetas */
+    .services { background: var(--white); border-top: 1px solid var(--lilac-deep); }
+    .services .intro { max-width: 36em; margin-top: 1rem; color: var(--muted); }
+    .service-list { list-style: none; margin: 2.5rem 0 0; padding: 0; border-top: 2px solid var(--violet); }
+    .service-list li {
+      display: grid; grid-template-columns: .9fr 1.4fr auto; gap: 1.5rem 2.5rem; align-items: center;
+      padding-block: 1.7rem; border-bottom: 1px solid var(--lilac-deep);
+    }
+    .service-list h3 { font-family: var(--display); font-weight: 400; font-size: 1.9rem; line-height: 1.1; color: var(--violet); }
+    .service-list p { color: var(--muted); }
+    .services .more { margin-top: 2rem; }
+
+    /* Evolutiva Espacio */
+    .space { position: relative; overflow: hidden; background: var(--plum); color: var(--white); }
+    .space .wrap { position: relative; z-index: 1; }
+    .space h2 { color: var(--white); font-size: clamp(2.4rem, 5.5vw, 4rem); }
+    .space p { margin-top: 1.2rem; max-width: 34em; color: #EBDDF3; }
+    .space .btn { margin-top: 2rem; }
+    .space .bg-rings { position: absolute; right: -8%; top: 50%; width: min(620px, 80vw); transform: translateY(-50%); color: #fff; opacity: .1; pointer-events: none; }
+    .space .bg-rings ellipse { fill: none; stroke: currentColor; }
+    .space :focus-visible { outline-color: var(--white); }
+
+    /* Cierre */
+    .closing { background: var(--lilac); text-align: center; }
+    .closing p { margin: 1.1rem auto 0; max-width: 30em; color: var(--muted); }
+    .closing .btn { margin-top: 2rem; }
+    .closing .alt { margin-top: 1.4rem; font-size: 1.05rem; }
+
+    /* ---------- Footer ---------- */
+    .site-footer { padding-block: 2.5rem; border-top: 1px solid var(--lilac-deep); }
+    .site-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.5rem; }
+    .site-footer img { height: 64px; width: auto; }
+    .site-footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 1.5rem; }
+    .site-footer a { text-decoration: none; font-weight: 600; color: var(--plum); }
+    .site-footer a:hover { color: var(--violet); }
+    .site-footer small { display: block; width: 100%; color: var(--muted); font-size: .95rem; }
+
+    /* ---------- WhatsApp flotante ---------- */
+    .wa-float {
+      position: fixed; right: 1rem; bottom: 1rem; z-index: 30;
+      box-shadow: 0 6px 18px rgba(63,33,80,.35);
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 860px) {
+      .menu-btn { display: inline-block; }
+      .nav { position: absolute; left: 0; right: 0; top: 100%; background: var(--white); border-bottom: 1px solid var(--lilac-deep);
+             flex-direction: column; align-items: stretch; gap: 1rem; padding: 1.2rem var(--gutter) 1.5rem; display: none; }
+      .nav.is-open { display: flex; }
+      .nav-links { flex-direction: column; gap: .4rem; }
+      .nav-links a { display: inline-block; font-size: 1.2rem; }
+      .nav .btn { justify-content: center; }
+      .brand img { height: 60px; }
+      .site-header .wrap { min-height: 68px; }
+      .hero .wrap { grid-template-columns: 1fr; }
+      .portrait { width: min(82%, 400px); order: -1; }
+      .hero h1 { max-width: none; }
+      .creds ul { grid-template-columns: 1fr; }
+      .about .wrap { grid-template-columns: 1fr; }
+      .service-list li { grid-template-columns: 1fr; gap: .6rem; }
+      .service-list li .btn { justify-self: start; margin-top: .6rem; }
+    }
+    @media (max-width: 480px) {
+      body { font-size: 1.12rem; }
+      .hero .actions .btn { width: 100%; justify-content: center; }
+      .wa-float span { display: none; }
+      .wa-float { padding: .85rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="Angie Orduña, Coach Ontológico. Ir al inicio">
+        <img src="assets/logo.png" alt="Angie Orduña, Coach Ontológico">
+      </a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu">Menú</button>
+      <nav class="nav" id="menu" aria-label="Principal">
+        <ul class="nav-links">
+          <li><a href="index.html" aria-current="page">Inicio</a></li>
+          <li><a href="quien-soy.html">Quién soy</a></li>
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+        <a class="btn btn--small" href="https://wa.me/5493764352913?text=Hola%20Angie%2C%20me%20gustar%C3%ADa%20hacer%20una%20consulta." target="_blank" rel="noopener">Escribime por WhatsApp</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <h1>Cambiá la forma en que te mirás y cambiá lo que hacés.</h1>
+          <p class="lead">Soy Angie Orduña, Coach Ontológico Profesional Acreditado en la AACOP. Acompaño procesos individuales con el cuerpo y la educación como ejes, y formo coaches en ECOA.</p>
+          <div class="actions">
+            <a class="btn" href="https://wa.me/5493764352913?text=Hola%20Angie%2C%20quiero%20agendar%20una%20sesi%C3%B3n." target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H11l-4.5 4v-4h0A2.5 2.5 0 0 1 4 13.5v-8Z"/></svg>
+              Agendá tu sesión por WhatsApp
+            </a>
+            <a class="btn btn--ghost" href="quien-soy.html">Conocé a Angie</a>
+          </div>
+        </div>
+
+        <div class="portrait">
+          <svg class="rings" viewBox="0 0 600 600" aria-hidden="true">
+            <g transform="rotate(-9 300 300)">
+              <ellipse class="r1" cx="300" cy="300" rx="285" ry="262" pathLength="1"/>
+              <ellipse class="r2" cx="300" cy="300" rx="248" ry="226" pathLength="1"/>
+              <ellipse class="r3" cx="300" cy="300" rx="212" ry="191" pathLength="1"/>
+              <ellipse class="r4" cx="300" cy="300" rx="178" ry="158" pathLength="1"/>
+            </g>
+          </svg>
+          <div class="photo">
+            <img src="assets/angie.jpg" alt="Angie Orduña sonriendo, con saco negro" width="640" height="640" fetchpriority="high">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="creds" aria-label="Trayectoria">
+      <div class="wrap">
+        <ul>
+          <li>
+            <strong>Coach Ontológico Profesional Acreditado</strong>
+            <span>AACOP</span>
+          </li>
+          <li>
+            <strong>Entrenadora en ECOA</strong>
+            <span>Sedes Puerto Iguazú y Oberá, y staff ECOA PM</span>
+          </li>
+          <li>
+            <strong>Más de 4 años en el coaching</strong>
+            <span>Sesiones individuales y formación de coaches</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section about" id="quien-soy">
+      <div class="wrap">
+        <h2>Coach, docente y formadora</h2>
+        <div class="body">
+          <p>Hace más de cuatro años me dedico al coaching. Soy especialista en coaching corporal y en coaching educativo, atiendo sesiones individuales y entreno en las sedes de Puerto Iguazú y Oberá de ECOA. También integro el staff de entrenadores de ECOA PM y facilito el aprendizaje de los alumnos avanzados de la escuela.</p>
+          <p>Mi llegada como docente y formadora hace que muchos alumnos me busquen para seguir formándose. Esa mirada es parte de cómo acompaño a cada persona.</p>
+          <a class="text-link" href="quien-soy.html">Más sobre mí</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section services" id="servicios">
+      <div class="wrap">
+        <h2>Cómo puedo acompañarte</h2>
+        <p class="intro">Elegí por dónde querés empezar. Si no sabés cuál es el camino, escribime y lo charlamos.</p>
+
+        <ul class="service-list">
+          <li>
+            <h3>Sesiones individuales</h3>
+            <p>Un espacio uno a uno para mirar una situación, un objetivo o un cambio que querés hacer, y definir cómo avanzar.</p>
+            <a class="btn btn--ghost btn--small" href="https://wa.me/5493764352913?text=Hola%20Angie%2C%20quiero%20consultar%20por%20las%20sesiones%20individuales." target="_blank" rel="noopener">Consultar</a>
+          </li>
+          <li>
+            <h3>Coaching corporal</h3>
+            <p>El cuerpo también conversa. Trabajamos la postura, las emociones y la manera de habitar eso que querés transformar.</p>
+            <a class="btn btn--ghost btn--small" href="https://wa.me/5493764352913?text=Hola%20Angie%2C%20quiero%20consultar%20por%20coaching%20corporal." target="_blank" rel="noopener">Consultar</a>
+          </li>
+          <li>
+            <h3>Coaching educativo</h3>
+            <p>Para docentes, formadores y quienes acompañan procesos de aprendizaje: revisar cómo enseñan, se vinculan y sostienen grupos.</p>
+            <a class="btn btn--ghost btn--small" href="https://wa.me/5493764352913?text=Hola%20Angie%2C%20quiero%20consultar%20por%20coaching%20educativo." target="_blank" rel="noopener">Consultar</a>
+          </li>
+          <li>
+            <h3>Formación en ECOA</h3>
+            <p>Entreno en las sedes de Puerto Iguazú y Oberá, y acompaño a alumnos avanzados que quieren seguir profundizando.</p>
+            <a class="btn btn--ghost btn--small" href="https://wa.me/5493764352913?text=Hola%20Angie%2C%20quiero%20consultar%20por%20las%20formaciones%20de%20ECOA." target="_blank" rel="noopener">Consultar</a>
+          </li>
+        </ul>
+
+        <p class="more"><a class="text-link" href="servicios.html">Ver todos los servicios</a></p>
+      </div>
+    </section>
+
+    <section class="section space" id="evolutiva">
+      <svg class="bg-rings" viewBox="0 0 600 600" aria-hidden="true">
+        <g transform="rotate(-9 300 300)">
+          <ellipse cx="300" cy="300" rx="285" ry="262" stroke-width="16"/>
+          <ellipse cx="300" cy="300" rx="248" ry="226" stroke-width="11"/>
+          <ellipse cx="300" cy="300" rx="212" ry="191" stroke-width="7"/>
+          <ellipse cx="300" cy="300" rx="178" ry="158" stroke-width="4"/>
+        </g>
+      </svg>
+      <div class="wrap">
+        <h2>Evolutiva Espacio</h2>
+        <p>Un lugar donde se desarrollan charlas, talleres, sesiones y encuentros. Escribime y te cuento qué actividades hay.</p>
+        <a class="btn btn--light" href="https://wa.me/5493764352913?text=Hola%20Angie%2C%20quiero%20saber%20qu%C3%A9%20actividades%20hay%20en%20Evolutiva%20Espacio." target="_blank" rel="noopener">Consultar actividades</a>
+      </div>
+    </section>
+
+    <section class="section closing">
+      <div class="wrap">
+        <h2>¿Querés dar el primer paso?</h2>
+        <p>Escribime por WhatsApp, me contás qué estás buscando y coordinamos.</p>
+        <a class="btn" href="https://wa.me/5493764352913?text=Hola%20Angie%2C%20me%20gustar%C3%ADa%20hacer%20una%20consulta." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H11l-4.5 4v-4h0A2.5 2.5 0 0 1 4 13.5v-8Z"/></svg>
+          Escribir por WhatsApp
+        </a>
+        <p class="alt">¿Preferís otro medio? <a class="text-link" href="contacto.html">Mirá todas las formas de contacto</a>.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <a href="index.html" aria-label="Angie Orduña, Coach Ontológico. Ir al inicio"><img src="assets/logo.png" alt="Angie Orduña, Coach Ontológico"></a>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="quien-soy.html">Quién soy</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="https://wa.me/5493764352913" target="_blank" rel="noopener">+54 9 3764 35-2913</a></li>
+      </ul>
+      <small>© <span id="year">2026</span> Angie Orduña, Coach Ontológico. Misiones, Argentina.</small>
+    </div>
+  </footer>
+
+  <a class="btn wa-float" href="https://wa.me/5493764352913?text=Hola%20Angie%2C%20me%20gustar%C3%ADa%20hacer%20una%20consulta." target="_blank" rel="noopener" aria-label="Escribir a Angie por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H11l-4.5 4v-4h0A2.5 2.5 0 0 1 4 13.5v-8Z"/></svg>
+    <span>WhatsApp</span>
+  </a>
+
+  <script>
+    (function () {
+      var btn = document.querySelector('.menu-btn');
+      var nav = document.getElementById('menu');
+      btn.addEventListener('click', function () {
+        var open = nav.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      nav.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') { nav.classList.remove('is-open'); btn.setAttribute('aria-expanded', 'false'); }
+      });
+      document.getElementById('year').textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
